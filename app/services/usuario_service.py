@@ -22,6 +22,21 @@ class UsuarioService:
         except Exception as erro: 
             print("Ocorreu um erro inesperado: {erro}")
 
+    def mostrar_usuario_por_email(self, email: str):
+        usuario = self.repository.pesquisar_usuario_por_email(email)
+
+        if usuario:
+            print(f"ID: {usuario.id}, Nome: {usuario.nome}, Email: {usuario.email}")
+        else:
+            print("Usuário não encontrado!")
+
+    def excluir_todos_usuarios(self):
+        try:
+            self.repository.excluir_todos_usuarios()
+            print("Todos os usuários foram removidos com sucesso!")
+        except Exception as erro:
+            print(f"Ocorreu um erro ao remover os usuários: {erro}")
+
 
     def listar_todos_usuarios(self):
         return self.repository.listar_usuarios()
